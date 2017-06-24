@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  freeipa-server:
+    image: freeipa/freeipa-server
+    hostname: ipa.example.test
+    tmpfs:
+      - /run
+      - /tmp
+    ports:
+      - 53:53/udp
+      - 53:53/tcp
+      - 80:80
+      - 443:443
+      - 389:389
+      - 636:636
+      - 88:88
+      - 88:88/udp
+      - 464:464
+      - 464:464/udp
+      - 123:123/udp
+      - 7389:7389
+      - 9443:9443
+      - 9444:9444
+      - 9445:9445
+    volumes:
+      - /var/lib/ipa-data:/data:Z
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    environment:
+      - IPA_SERVER_IP=10.12.0.98
+
